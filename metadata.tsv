@@ -1,0 +1,3 @@
+name	gene_file	class_file	contrast
+gsea_preranked_example	gsea_preranked_example.rnk		
+gsea_example	gsea_example.txt	gsea_example.cls	exp_versus_ctrl

@@ -1,0 +1,66 @@
+# please downolad the commandline interface tool for gsea from
+# https://www.gsea-msigdb.org/gsea/downloads.jsp and extract it either to
+# snakemake/gsea_cli directory or any other directory provided the path is
+# changed appropriately in config file
+gsea_path: "snakemake/gsea_cli/gsea-cli.sh"
+
+# name of the metadata file, contains name of gsea expression and optional class
+# files together with desired contrasts that are to be analyzed
+# for details on file formats see:
+# https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats
+metadata: "metadata.tsv"
+
+# versions of gmt and chip files can be downloaded at
+# https://www.gsea-msigdb.org/gsea/downloads.jsp
+gmt_path: "/shared/msigdb_7.5/gmt/"
+chip_path: "/shared/msigdb_7.5/chip/"
+chipfile: "Mouse_ENSEMBL_Gene_ID_Human_Orthologs_MSigDB.v7.5.1.chip"
+
+# Specify contrasts you want to analyse in form {group1}_versus_{group2}
+# as defined in cls file. Second group is taken as baseline.
+# You can use keyword 'REST' to compare against all other groups.
+# Dashes are not allowed in group names.
+# contrasts:
+#   - "LKO_M_versus_ALB_M"
+
+# specify genesets, the name is a gmt file prefix before version number
+# or 'msigdb' for whole msigdb database
+genesets:
+  - "h.all"
+
+# if collapse is 'Collapse' or 'Remap_Only', specify chipfile to translate
+# identifiers in yourdataset to human orthologues
+collapse: Collapse
+
+# scoring for GSEA and GSEAPreranked
+scoring_scheme:
+  gsea: weighted
+  gsea_preranked: classic
+
+##### other parameters to GSEA, see GSEA homepage for info #####
+# in addition export plots in svg format, takes more space
+plot_top_pathways: 50
+norm: meandiv
+nperm: 1000
+max_set_size: 500
+min_set_size: 15
+make_sets: true
+# omit features with no symbol match
+include_only_symbols: true
+create_svgs: false
+zip_report: false
+# doesn't display GSEA progress, considerably decreases the commandline runtime
+silent: true
+
+# GSEA Preranked only
+mode: Abs_max_of_probes
+
+# GSEA only
+metric: Signal2Noise
+sort: real
+order: descending
+create_gcts: false
+num_markers: 100
+permute: phenotype
+median: false
+rnd_type: no_balance
