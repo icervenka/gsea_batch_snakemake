@@ -30,7 +30,7 @@ rule gsea_preranked:
     run:
         silent = silent_cli(config['silent'])
         shell(
-            GSEA_PATH + " GSEAPreranked "
+            config['gsea_path'] + " GSEAPreranked "
             "-rnk {input.gene_file} "
             "-gmx {input.gene_set} "
             "-collapse {params.collapse} "

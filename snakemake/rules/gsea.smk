@@ -37,7 +37,7 @@ checkpoint gsea:
     run:
         silent = silent_cli(config['silent'])
         shell(
-            GSEA_PATH + " GSEA "
+            config['gsea_path'] + " GSEA "
             "-res {input.gene_file} "
             "-cls {input.class_file}#{params.contrast} "
             "-gmx {input.gene_set} "
