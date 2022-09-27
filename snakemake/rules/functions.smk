@@ -20,3 +20,9 @@ def get_gsea_preranked_files(wildcards):
     m = Metadata[Metadata['class_file'].str.len() < 1]
     m = Metadata.query('name == @wildcards.name').gene_file.dropna().unique()[0]
     return(INPUT_DIR + m)
+
+def silent_cli(silent_toggle):
+    if silent_toggle:
+        return("> /dev/null; ")
+    else:
+        return("; ")

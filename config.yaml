@@ -8,6 +8,11 @@ gsea_path: "snakemake/gsea_cli/gsea-cli.sh"
 # files together with desired contrasts that are to be analyzed
 # for details on file formats see:
 # https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats
+#
+# For standard GSEA you have to specify contrasts you want to analyse in form
+# {group1}_versus_{group2}  as defined in cls file. Second group is taken as baseline.
+# You can use keyword 'REST' to compare against all other groups.
+# Dashes are not allowed in group names.
 metadata: "metadata.tsv"
 
 # versions of gmt and chip files can be downloaded at
@@ -16,12 +21,8 @@ gmt_path: "/shared/msigdb_7.5/gmt/"
 chip_path: "/shared/msigdb_7.5/chip/"
 chipfile: "Mouse_ENSEMBL_Gene_ID_Human_Orthologs_MSigDB.v7.5.1.chip"
 
-# Specify contrasts you want to analyse in form {group1}_versus_{group2}
-# as defined in cls file. Second group is taken as baseline.
-# You can use keyword 'REST' to compare against all other groups.
-# Dashes are not allowed in group names.
-# contrasts:
-#   - "LKO_M_versus_ALB_M"
+# doesn't display GSEA progress, considerably decreases the commandline runtime
+silent: true
 
 # specify genesets, the name is a gmt file prefix before version number
 # or 'msigdb' for whole msigdb database
@@ -49,8 +50,6 @@ make_sets: true
 include_only_symbols: true
 create_svgs: false
 zip_report: false
-# doesn't display GSEA progress, considerably decreases the commandline runtime
-silent: true
 
 # GSEA Preranked only
 mode: Abs_max_of_probes
