@@ -1,4 +1,5 @@
-# TODO benchmarks for GSEA don't accept contrast parameter in filename
+# type: ignore
+# TODO benchmarks for GSEA don't accept contrast wildcard in filename
 
 import pandas as pd
 import glob

@@ -1,0 +1,4 @@
+.snakemake
+snakemake/gsea_cli
+reports/
+logs/
